@@ -12,11 +12,10 @@
 #  organisation            :string(255)
 #  created_at              :datetime
 #  updated_at              :datetime
-#  club                    :string(255)
 #  registration_open_date  :datetime
 #  registration_close_date :datetime
-#  show_ticket_count       :boolean          default(TRUE)
 #  bank_number             :string(255)
+#  show_ticket_count       :boolean          default(TRUE)
 #  contact_email           :string(255)
 #
 
@@ -30,6 +29,8 @@ class Event < ActiveRecord::Base
   has_many :people, through: :roles
 
   has_many :periods, dependent: :destroy
+
+  has_one :club
 
   validates :description, presence: true
   validates :end_date, presence: true

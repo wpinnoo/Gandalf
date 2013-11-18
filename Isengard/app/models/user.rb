@@ -12,15 +12,17 @@
 #  last_sign_in_ip     :string(255)
 #  created_at          :datetime
 #  updated_at          :datetime
-#  club                :string(255)
 #
 
 class User < ActiveRecord::Base
+
+  has_many :clubs
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :cas_authenticatable
 
-  after_create :fetch_club
+  after_initialize :fetch_club
 
   # return the club this user can manage
   def fetch_club

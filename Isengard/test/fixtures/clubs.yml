@@ -1,0 +1,20 @@
+# == Schema Information
+#
+# Table name: clubs
+#
+#  id            :integer          not null, primary key
+#  internal_name :string(255)
+#  display_name  :string(255)
+#  created_at    :datetime
+#  updated_at    :datetime
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  internalName: MyString
+  displayName: MyString
+
+two:
+  internalName: MyString
+  displayName: MyString

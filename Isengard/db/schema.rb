@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131117175200) do
+ActiveRecord::Schema.define(version: 20131118155937) do
 
   create_table "access_levels", force: true do |t|
     t.string   "name"
@@ -37,6 +37,13 @@ ActiveRecord::Schema.define(version: 20131117175200) do
   add_index "accesses", ["period_id"], name: "index_accesses_on_period_id"
   add_index "accesses", ["registration_id"], name: "index_accesses_on_registration_id"
 
+  create_table "clubs", force: true do |t|
+    t.string   "internal_name"
+    t.string   "display_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "events", force: true do |t|
     t.string   "name"
     t.datetime "start_date"
@@ -47,15 +54,12 @@ ActiveRecord::Schema.define(version: 20131117175200) do
     t.string   "organisation"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "club"
     t.datetime "registration_open_date"
     t.datetime "registration_close_date"
     t.string   "bank_number"
     t.boolean  "show_ticket_count",       default: true
     t.string   "contact_email"
   end
-
-  add_index "events", ["club"], name: "index_events_on_club"
 
   create_table "included_zones", force: true do |t|
     t.integer  "zone_id"
@@ -132,7 +136,6 @@ ActiveRecord::Schema.define(version: 20131117175200) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "club"
   end
 
   add_index "users", ["username"], name: "index_users_on_username", unique: true
