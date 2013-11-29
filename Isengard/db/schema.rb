@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131120115935) do
+ActiveRecord::Schema.define(version: 20131120224705) do
 
   create_table "access_levels", force: true do |t|
     t.string   "name"
@@ -36,6 +36,23 @@ ActiveRecord::Schema.define(version: 20131120115935) do
   add_index "accesses", ["access_level_id"], name: "index_accesses_on_access_level_id"
   add_index "accesses", ["period_id"], name: "index_accesses_on_period_id"
   add_index "accesses", ["registration_id"], name: "index_accesses_on_registration_id"
+
+  create_table "club_events", force: true do |t|
+    t.integer  "club_id"
+    t.integer  "event_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "club_events", ["club_id"], name: "index_club_events_on_club_id"
+  add_index "club_events", ["event_id"], name: "index_club_events_on_event_id"
+
+  create_table "clubs", force: true do |t|
+    t.string   "internal_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "display_name"
+  end
 
   create_table "delayed_jobs", force: true do |t|
     t.integer  "priority",   default: 0, null: false
